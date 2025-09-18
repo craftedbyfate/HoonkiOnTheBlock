@@ -116,7 +116,7 @@
 
     .game-board {
       display: grid;
-      grid-template-columns: repeat(7, 1fr); /* 7 columns */
+      grid-template-columns: repeat(7, 1fr);
       grid-auto-rows: 1fr;
       gap: 8px;
       height: 100%;
@@ -267,7 +267,6 @@
 
     const universalCardBackImage = "front.png";
 
-    // Map each original image to its specific reveal image
     const revealImageMap = {
       "1.png": "1-2.png",
       "2.png": "2-2.png",
@@ -361,7 +360,6 @@
           score += 10;
           matchedPairs++;
 
-          // Add click listeners to toggle specific reveal image on matched cards
           addMatchedCardToggle(card1);
           addMatchedCardToggle(card2);
 
@@ -380,16 +378,14 @@
 
     function addMatchedCardToggle(card) {
       card.addEventListener("click", () => {
-        // Only toggle if card is matched and flipped
         if (!card.classList.contains("matched") || !card.classList.contains("flipped")) return;
 
         const cardBackImg = card.querySelector(".card-back img");
         const originalImage = card.dataset.image;
         const revealImage = revealImageMap[originalImage];
 
-        if (!revealImage) return; // No reveal image defined
+        if (!revealImage) return;
 
-        // Toggle between original matched image and specific reveal image
         if (cardBackImg.src.includes(revealImage)) {
           cardBackImg.src = originalImage;
         } else {
